@@ -1212,3 +1212,11 @@ module.exports = {
 };
 
 ```
+
+## Certificado
+
+- [Diploma](./diploma-typescript.pdf)
+
+---
+
+👩‍💻 with ❤️ by [silnose](https://github.com/silnose) 😊
