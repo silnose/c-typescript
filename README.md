@@ -33,25 +33,25 @@ Es un superconjunto tipado de javascript, que compila a javascript puede ser usa
 
 Con el siguiente comando lo instalaremos de manera global:
 
-```
+```javascript
 sudo npm install -g typescript
 ```
 
 Consultar la versión del compilador de TS:
 
-```
-tsc -v
+```javascript
+tsc - v;
 ```
 
 Compilar nuestros ficheros .ts
 
-```
+```javascript
 tsc your_file.ts
 ```
 
 Compilar de manera ‘automática’ nuestros ficheros .ts
 
-```
+```javascript
 tsc --watch your_file.ts
 ```
 
@@ -86,45 +86,44 @@ Permite configurar opciones para el compilado
 
 Numericos, hexadecimales, binarios, octales.
 
-```
-
+```javascript
 //--------- Number ------------
 // Explicito
-let phone: number
-phone = 1
-phone = 3023455882
+let phone: number;
+phone = 1;
+phone = 3023455882;
 // phone = 'hola' // Error
 
 // Inferido
-let phoneNumber = 3023455882
-phoneNumber = 123
+let phoneNumber = 3023455882;
+phoneNumber = 123;
 // phoneNumber = true // Error de tipo
 
-let hex: number = 0xf00d
-let binary: number = 0b1010
-let octal: number = 0o744
+let hex: number = 0xf00d;
+let binary: number = 0b1010;
+let octal: number = 0o744;
 ```
 
 ## Boolean
 
-```
+```javascript
 //---------- Bolean ----------
 // Tipado Explicito
-let isPro: boolean
-isPro = true
-isPro = false
+let isPro: boolean;
+isPro = true;
+isPro = false;
 // isPro = 1 // Error
 
 // Inferido
-let isUserPro = false
-isUserPro = true
+let isUserPro = false;
+isUserPro = true;
 ```
 
 ## String
 
 Podemos hacer uso de comillas dobles o simples .
 
-```
+```javascript
 //------------ String ------------
 // Explicito
 let username: string = 'luixaviles'
@@ -150,7 +149,7 @@ Los valores pueren cambiar de tipo en el tiempo, Ej:
 - APIs externas
 - Librerías de terceros
 
-```
+```javascript
 // type Any --> For dynamic variables
 // Explicit type
 let idUser: any;
@@ -177,7 +176,7 @@ console.log(`res ${res}`);
 
 Lo opuesto a any, representa la ausencia de tipo. usado en funciones que no retornan nada.
 
-```
+```javascript
 / type void for functions
 // Explicit type
 
@@ -208,7 +207,7 @@ unusable = undefined;
 
 Es un tipo de dato especial en TypeScript, representa el tipo de valor que nunca ocurre, puede ser usado en funciones que lanzan excepciones o en funciones que nunca retornan un valor.
 
-```
+```javascript
 // Type never
 function handleError(code: number, message: string): never {
   // Process your code
@@ -230,12 +229,11 @@ function sumNumbers(limit: number): never {
 }
 
 sumNumbers(10); // --> Llamada a un bucle infinito no acabaria nunca, typescript no compila, al verlo.
-
 ```
 
 ## NULL
 
-```
+````javascript
 //  ------------------ NULL ------------------
 // Explicita
 let nullVariable: null;
@@ -249,11 +247,11 @@ otherVariable = 'test';
 console.log('nullVariable : ', nullVariable);
 console.log('otherVariable : ', otherVariable);
 
-```
+```javascript
 
 ## UNDEFINED
 
-```
+```javascript
 //  ----------------- UNDEFINED -----------------
 let undefinedVariable: undefined = undefined;
 // undefinedVariable = 'test'; // --> Error
@@ -264,11 +262,11 @@ otherUndefined = 1;
 console.log('undefinedVariable : ', undefinedVariable);
 console.log('otherUndefined : ', otherUndefined);
 
-```
+````
 
 NULL y UNDEFINED tambien se pueden definir como como subtipos. En el archivo .conf de typescript podemos ver el Flag del compilador de typescript --strictNullChecks. Solo permite asignar null y undefined a una variable de tipo any o sus tipos respectivos.
 
-```
+```javascript
 let albumName: string;
 // albumName = null;
 // albumName = undefined;
@@ -286,17 +284,16 @@ OJO!
 - **Object:** instancia de la clase Object de Javascript
 - **object:** tipo para valores no primitivos. Con este tipo no se puede acceder a las propiedades del objeto. (user.id)
 
-```
-
+```javascript
 // ------ Tipo: object ------
 // explicito
 let user: object;
 user = {}; // Object
 user = {
-    id: 1,
-    username: 'paparazzi',
-    firstname: 'Pablo',
-    isPro: true
+  id: 1,
+  username: 'paparazzi',
+  firstname: 'Pablo',
+  isPro: true,
 };
 console.log('user', user);
 // console.log('user.username', user.username); // --> no se puede acceder al dato username
@@ -309,15 +306,14 @@ console.log('user', user);
 // ---- Object vs object (Clase JS vs tipo TS) ----
 // considera como tipo instancia Object de JavaScript
 const myObj = {
-    id: 1,
-    username: 'paparazzi',
-    firstname: 'Pablo',
-    isPro: true
+  id: 1,
+  username: 'paparazzi',
+  firstname: 'Pablo',
+  isPro: true,
 };
 const isInstance = myObj instanceof Object; // trueo o false
 console.log('isInstance : ', isInstance); // clase Object JavaScript
 console.log('myObj.username : ', myObj.username); // --> se puede acceder al dato username
-
 ```
 
 ## Array
@@ -327,19 +323,19 @@ TypeScript admite matrices, similar a JavaScript. Hay dos formas de declarar una
 
 Utilizando corchetes. Este método es similar a cómo declararía matrices en JavaScript.
 
-```
+```javascript
 const names = string[];
 ```
 
 Usando un tipo de arreglo genérico, Array <elementType>.
 
-```
+```javascript
 const months = Array<string>;
 ```
 
 Ambos métodos producen el mismo resultado.
 
-```
+```javascript
 
 / ------- Tipo: Array -------
 
@@ -374,8 +370,7 @@ console.log('users', users);
 
 Una tupla en TypeScript es un array de elementos que están tipados. De esta manera cada vez que haya que insertar un elemento se validará que dicho elemento coincida con el tipo de dato establecido en la tupla. Y contiene un numero fijo de elementos.
 
-```
-
+```javascript
 export {}; // -> user ya fue declarado en otro archivo
 
 // [1, 'user']
@@ -397,21 +392,20 @@ console.log('userInfo : ', userInfo);
 let array: [number, string][] = [];
 array.push([1, 'luixaviles']);
 array.push([2, 'paparazzi']);
-array.push([3, 'lensQueen']);   // indice: 2
+array.push([3, 'lensQueen']); // indice: 2
 console.log('array : ', array);
 
 // Uso de funciones array
 // lensQueen --> lensQueen001
-array[2][1] = array[2][1].concat('001');  // --> concatena
+array[2][1] = array[2][1].concat('001'); // --> concatena
 console.log('array : ', array);
-
 ```
 
 ## Enum
 
 Los enum se podria decir que son una lista de valores. Las variables que tengan definido como tipo un enum solo podran asignarsele valores que esten dentro del enum.
 
-```
+```javascript
 
 /*
 const landscape = 0;
@@ -450,8 +444,8 @@ console.log('country : ', country); // --> col
 En TypeScript se puede definir una variable con multiple tipos de datos: Union Type.
 Se usa el simbolo de pipe ('|') entre los tipos
 
-```
-export {}
+```javascript
+export {};
 
 // 10, '10'
 let idUser: number | string;
@@ -459,8 +453,8 @@ idUser = 10;
 idUser = '10';
 // Buscar username dado un ID
 function getUsernameById(id: number | string) {
-    // logica de negocio, find the user
-    return 'luixaviles';
+  // logica de negocio, find the user
+  return 'luixaviles';
 }
 getUsernameById(20);
 getUsernameById('20');
@@ -476,20 +470,19 @@ idUser = '10';
 // Buscar username dado un ID
 // function getUsernameById(id: number | string)
 function getUsernameById(id: IdUser): Username {
-    // logica de negocio, find the user
-    return 'luixaviles';
+  // logica de negocio, find the user
+  return 'luixaviles';
 }
 getUsernameById(20);
 getUsernameById('20');
-
 ```
 
 Tipos literales
 
-```
+```javascript
 /* Tipos literales */
 // 100x100, 500x500, 1000x1000
-type SquareSize = '100x100' | '500x500' | '1000x1000';   // string | number
+type SquareSize = '100x100' | '500x500' | '1000x1000'; // string | number
 // let smallPicture: SquareSize = '200x200'; // --> Error
 let smallPicture: SquareSize = '100x100';
 let mediumPicture: SquareSize = '500x500';
@@ -501,7 +494,7 @@ Mecanismo de conversión de tipos de datos. Se parece al casting de tipos en otr
 
 Se utiliza mas la sintaxys "angle brakets" que al sitaxis "as"
 
-```
+```javascript
 export {};
 
 //<type> // Angle Bracket syntax
@@ -536,42 +529,44 @@ console.log('username', username);
 - Se pueden definir parametros opcionales
 - El tipo de retorno puede ser un tipo basico/primitivo o una combinacion de ellos.
 
-```
-
+```javascript
 // // Crear una Fotografia: JS
 // function createPicture(title, date, size) {
 //     // title
 // }
 
-type SquareSize = '100x100' | '500x500' | '1000x1000'
+type SquareSize = '100x100' | '500x500' | '1000x1000';
 // Usamos TS, definimos tipos para paramentros
-function createPicture(title:string, date: string, size: SquareSize) {
-    // Se crea la fotografia
-    console.log('create Picture using', title, date, size);
+function createPicture(title: string, date: string, size: SquareSize) {
+  // Se crea la fotografia
+  console.log('create Picture using', title, date, size);
 }
 
 createPicture('My Birthday', '2020-03-10', '500x500');
 createPicture('Colombia', '2020-03-20'); // --> Error
 
 // Parametros opcionales
-function createPictureOptional(title?:string, date?: string, size?: SquareSize) {
-    // Se crea la fotografia
-    console.log('create Picture using', title, date, size);
+function createPictureOptional(
+  title?: string,
+  date?: string,
+  size?: SquareSize
+) {
+  // Se crea la fotografia
+  console.log('create Picture using', title, date, size);
 }
 
 // Flat Array Function
 let createPic = (title: string, date: string, size: SquareSize): object => {
-    // return {
-    //     title: title,
-    //     date: date,
-    //     size: size
-    // };
-    return { title, date, size };
+  // return {
+  //     title: title,
+  //     date: date,
+  //     size: size
+  // };
+  return { title, date, size };
 };
 
 const picture = createPic('Platzi session', '2020-03-10', '100x100');
 console.log(picture);
-
 ```
 
 # Tipos de Retorno
@@ -579,8 +574,7 @@ console.log(picture);
 Usar never cuando vamos a lanzar excepciones en la función.
 Al momento de usar la función, ponerlo en un try catch.
 
-```
-
+```javascript
 //Tipo de retorno en TypeScript
 
 function handleError(code: number, message: string): never | string {
@@ -603,6 +597,8 @@ try {
 }
 ```
 
+---
+
 # Interfaces
 
 <https://www.typescriptlang.org/docs/handbook/interfaces.html>
@@ -611,7 +607,7 @@ Las interfaces una forma poderosa de definir 'contratos' tanto para tu proyecto,
 
 Una interfaz es como un molde para un objeto. Si el objeto no encaja en el molde, te va a dar error.
 
-```
+```javascript
 
 // Funcion para mostrar una Fotografia
 export {}
@@ -649,38 +645,35 @@ showPicture({
 - Propiedades opcionales
   No todas las propiedades de una interfaz podrian ser requeridas. Usamos el simbolo ‘?’ luego del nombre de la propiedad.
 
-```
-
+```javascript
 interface PictureConfig {
-    title?: string;
-    date?: string;
-    orientation?: PhotoOrientation
+  title?: string;
+  date?: string;
+  orientation?: PhotoOrientation;
 }
 function generatePicture(config: PictureConfig) {
-    const pic = { title: 'Default', date: '2020-03' };
-    if (config.title) {
-        pic.title = config.title;
-    }
-    if (config.date) {
-        pic.date = config.date;
-    }
-    return pic;
+  const pic = { title: 'Default', date: '2020-03' };
+  if (config.title) {
+    pic.title = config.title;
+  }
+  if (config.date) {
+    pic.date = config.date;
+  }
+  return pic;
 }
 let picture = generatePicture({});
 console.log('picture : ', picture);
-picture = generatePicture({title: 'Travel Pic'});
+picture = generatePicture({ title: 'Travel Pic' });
 console.log('picture : ', picture);
-picture = generatePicture({title: 'Travel Pic', date: '2012-05'});
+picture = generatePicture({ title: 'Travel Pic', date: '2012-05' });
 console.log('picture : ', picture);
-
-
 ```
 
 - Propiedades de solo lectura:
 
 Algunas propiedades de la interfaz podrian no ser modificables una vez creado el objeto. Esto es posible usando readonly antes del nombre de la propiedad
 
-```
+```javascript
 // Interfaz: usuario
 interface User {
     readonly id: number; // solo lectura
@@ -695,3 +688,470 @@ user.username = 'paparazzi';
 console.log('user : ', user);
 
 ```
+
+- Extender interfaces
+
+Extendiendo Interfaces. Las interfaces pueden extenderse unas de otras. Esto permite copiar los miembros ya definidos en una interfaz a otra, ganando flexibilidad y reusabilidad de componentes.
+
+```javascript
+interface Person {
+  name: string;
+  lastname: string;
+}
+interface Student extends Person {
+  person: Person;
+}
+```
+
+```javascript
+export {}
+
+enum PhotoOrientation {
+    Landscape,
+    Portrait,
+    Square,
+    Panorama
+}
+interface Entity {
+    id: number;
+    title: string;
+}
+interface Album extends Entity {
+    // copia de los atributos de Entity
+    // id: number;
+    // titulo: string;
+    descripcion: string;
+}
+interface Picture extends Entity{
+    orientation: PhotoOrientation
+}
+const album: Album = {
+    id: 1,
+    title: 'Meetups',
+    descripcion: 'Community events around the world'
+};
+const picture: Picture = {
+    id: 1,
+    title: 'Family',
+    orientation: PhotoOrientation.Landscape
+};
+
+let newPicture = {} as Picture;
+newPicture.id = 2;
+newPicture.title = 'Moon';
+
+console.log('album : ', album);
+console.log('picture : ', picture);
+console.log('newPicture : ', newPicture);
+
+
+```
+
+# Clases
+
+Una clase abstrae un conjunto de objetos.
+![](../c-typescript/readme-static/clases.png)
+
+````
+
+export {};
+console.clear();
+
+enum PhotoOrientation {
+  Landscape = 'Landscape',
+  Portrait = 'Portrait',
+  Square = 'Square',
+  Panorama = 'Panorama',
+}
+
+// interface Entity {
+//   id: number;
+//   title: string;
+// }
+
+// class Entity {
+//     id: number;
+//     title: string;
+//   }
+
+class Picture {
+  id: number;
+  title: string;
+  orientation: PhotoOrientation;
+
+  constructor(id: number, title: string, orientation: PhotoOrientation) {
+    this.id = id;
+    this.title = title;
+    this.orientation = orientation;
+  }
+
+  // Comportamiento
+  toString() {
+    return `[id: ${this.id}, title: ${this.title}, orientation: ${this.orientation}]`;
+  }
+}
+
+class Album {
+  id: number;
+  title: string;
+  pictures: Picture[] = [];
+
+  constructor(id: number, title: string) {
+    this.id = id;
+    this.title = title;
+    // this.pictures = [];
+  }
+
+  addPicture(picture: Picture) {
+    this.pictures.push(picture);
+  }
+}
+
+const picture: Picture = new Picture(100, 'cool', PhotoOrientation.Square);
+const picture1 = new Picture(201, 'korn', PhotoOrientation.Square);
+const album: Album = new Album(534, 'Family');
+console.log(picture);
+console.log(picture1);
+album.addPicture(picture);
+album.addPicture(picture1);
+
+console.log('album',album);
+```javascript
+
+# Clases públicas y privadas
+
+- Clases - miembros públicos: define un modificador de acceso publico por defecto para los miembros de la clase. También es posible marcar un miembro como publico usando la palabra reservada public
+
+```javascript
+class Person{
+	private id:number;
+	private name: string;
+	public constructor(){}
+	public getName(){
+		return this.name
+	}
+}
+````
+
+- Clases - miembros privados: define una manera propia de declarar o marcar un miembro como privado usando la palabra reservada private. Ej id unicos que provengan de la bd no se pueden editar.
+
+Miembros privados ECMAScript: soporta (a partir de la versión 3.8) la nueva sintaxis JavaScript para miembros privados: #atributo. Esta caracteristica puede ofrecer mejores garantias de aislamiento en miembros privados
+
+\_(underscore) Es una simple convención que indica una variable privada.
+
+```javascript
+class Person{
+	#id:number;
+	#name: string;
+	public constructor(){}
+	public getName(){
+		return this.#name
+	}
+}
+```
+
+```javascript
+
+
+export {};
+
+// TypeScript 3.8
+
+enum PhotoOrientation {
+    Landscape,
+    Portrait,
+    Square,
+    Panorama
+}
+
+class Picture {
+    // Propiedades
+    #id: number;
+    #title: string;
+    #orientation: PhotoOrientation;
+
+    public constructor(id: number,
+                title: string,
+                orientation: PhotoOrientation) {
+        this.#id = id;
+        this.#title = title;
+        this.#orientation = orientation;
+    }
+
+    // Comportamiento
+    public toString() {
+        return `[id: ${this.#id},
+                 title: ${this.#title},
+                 orientation: ${this.#orientation}]`;
+    }
+}
+
+class Album {
+    #id: number;
+    #title: string;
+    #pictures: Picture[];
+
+    public constructor(id: number, title: string) {
+        this.#id = id;
+        this.#title = title;
+        this.#pictures = [];
+    }
+
+    public addPicture(picture: Picture) {
+        this.#pictures.push(picture);
+    }
+}
+
+const album: Album = new Album(1, 'Personal Pictures');
+const picture: Picture = new Picture(1, 'Platzi session', PhotoOrientation.Square);
+album.addPicture(picture);
+console.log('album', album);
+
+// Accediendo a los miembros publicos
+// picture.id = 100; // private
+// picture.title = 'Another title'; // private
+// album.title = 'Personal Activities'; //private
+console.log('album', album);
+
+```
+
+# Métodos Get y Set
+
+Typescript soporta los metodos accesores set, get como una forma de interceptar los accesos a los miembros privados de un objeto.
+
+to le da una forma de tener un control más fino sobre cómo se accede a un miembro en cada objeto y hasta podemos realizar validaciones.
+
+```javascript
+class Person {
+	private _name:string
+	constructor()
+	get name(){
+		return this._name
+	}
+	set name(name: string){
+		this._name = name
+	}
+}
+
+```
+
+Se accede person.name ya que internamente ts invoca a los metodos get-set
+
+# Herencia de clases y propiedades estáticas
+
+Herencia de clases y miembros protegidos
+Typescript soporta este patrón común en el mundo de la POO
+Implementa la habilidad de extender codigo de clases existentes a través de la herencia.
+Utilizamos la palabra extends para heredar
+Se heredan solo los atributos public o protected
+tenemos acceso al constructor de la clase padre super()
+
+```javascript
+class Person {
+	protected id:number;
+	protected name:string;
+	constructor(id:number, name:string){
+
+	}
+}
+class Student extends Person {
+	private active:boolean
+	constructor(id:number, name:string, active:boolean){
+		super(id,name)
+		this.active = active
+	}
+}
+```
+
+## Propiedades estaticas y de solo lectura
+
+Las clases por lo general definen atributos y métodos aplicables a las instancias de las mismas. A través de la palabra reservada **static ** se puede definir un miembro visible a nivel de clase ( no necesario instanciar )
+Al igual que las interfaces, podemos usar la palabra reservada readonly para marcar el miembro de una clase como solo lectura
+
+```javascript
+class Person {
+	static personQuantity: number = 0
+	protected readonly id: number
+}
+```
+
+# Clases abstractas
+
+Clases abstractas: Las clases abstractas son la base de donde otras clases podrian derivarse. A diferencia de una interfaz, una clase abstracta puede implementar funciones para sus instancias.
+Las mismas son muy genericas y queremos evitar instancias de la misma. Ejemplo tener clase item para contener atributos genericos o comunes a las clases.
+La palabra reservada es abstract
+
+```javascript
+abstract class Item{}
+```
+
+```javascript
+export {};
+
+enum PhotoOrientation {
+    Landscape,
+    Portrait,
+    Square,
+    Panorama
+}
+// SUPERclase
+abstract class Item {
+    protected readonly _id: number;
+    protected _title: string;
+
+    constructor(id: number, title: string) {
+        this._id = id;
+        this._title = title;
+    }
+
+    get id() {
+        return this._id;
+    }
+    // set id(id: number) {
+    //     this._id = id;
+    // }
+    get title() {
+        return this._title;
+    }
+    set title(title: string) {
+        this._title = title;
+    }
+}
+
+
+// get y set
+
+class Picture extends Item{
+    public static photoOrientation = PhotoOrientation;
+    // Propiedades
+    private _orientation: PhotoOrientation;
+
+    public constructor(id: number,
+                title: string,
+                orientation: PhotoOrientation) {
+        super(id, title);
+        this.orientation = orientation;
+    }
+    get orientation() {
+        return this._orientation;
+    }
+    set orientation(o: PhotoOrientation) {
+        this._orientation = o;
+    }
+
+    // Comportamiento
+    public toString() {
+        return `[id: ${this.id},
+                 title: ${this.title},
+                 orientation: ${this.orientation}]`;
+    }
+}
+
+class Album extends Item{
+    private pictures: Picture[];
+
+    public constructor(id: number, title: string) {
+        super(id, title);// constructor de SUPER clase
+        this.pictures = [];
+    }
+    public addPicture(picture: Picture) {
+        this.pictures.push(picture);
+    }
+}
+
+const album: Album = new Album(1, 'Personal Pictures');
+const picture: Picture = new Picture(1, 'Platzi session', PhotoOrientation.Square);
+album.addPicture(picture);
+console.log('album', album);
+
+// Accediendo a los miembros publicos
+console.log('picture.id', picture.id); // get id()
+// picture.id = 100; // private, set id(100);
+picture.title = 'Another title'; // private
+album.title = 'Personal Activities'; //private
+console.log('album', album);
+
+// const item = new Item(1, 'Test title');
+// console.log('item', item);
+
+// Probar el miembro estatico
+console.log('PhotoOrientation', Picture.photoOrientation.Landscape);
+```
+
+# Modulos
+
+los módulos en typescript proveen un mecanismo para una mejor organización del código y promueven su reutilización
+A partir de ECMAScript 2015 los módulos son parte nativa del lenguaje Javascript
+
+Importando y exportando modulos: Generalmente se define un modulo con la idea de agrupar codigo relacionado. Podemos tomar criterios en torno a la funcionalidad, features, utilitarios, modelos, etc.
+
+Los miembros de modulo interactúan con el uso de las palabras reservadas import y export
+
+```javascript
+export enum PhotoOrientation {
+	Landscape,
+	Portrait,
+	Square,
+	Panorama
+}
+
+export class Item {
+	constructor(public readonly id: number, protected title: string) {}
+}
+
+export class User {
+	private album: Album[];
+
+	constructor(private id: number, private username: string, private firstName: string, private isPro: boolean) {
+		this.album = [];
+	}
+
+	addAlbum(album: Album) {
+		this.album.push(album);
+	}
+}
+
+export class Album extends Item {
+	private pictures: Picture[];
+
+	public constructor(id: number, title: string) {
+		super(id, title);
+		this.pictures = [];
+	}
+	public addPicture(picture: Picture) {
+		this.pictures.push(picture);
+	}
+}
+
+export class Picture extends Item {
+	public constructor(id: number, title: string, private _date: string, private _orientation: PhotoOrientation) {
+		super(id, title);
+	}
+	public toString() {
+		return `[id: ${this.id},
+                 title: ${this.title},
+                 orientation: ${this._orientation}]`;
+	}
+}
+```
+
+```javascript
+import { User, Album, Picture, PhotoOrientation } from './photo-app';
+
+const user = new User(1, 'Erickowski', 'Erick', true);
+const album = new Album(10, 'Platzi Album');
+const picture = new Picture(1, 'Foto', '2020-08', PhotoOrientation.Landscape);
+
+// Creamos relaciones
+user.addAlbum(album);
+album.addPicture(picture);
+
+console.log('user', user);
+```
+
+# Principios de responsabilidad única
+
+Proviene de los principios SOLID indica que , **idealmente un archivo deberia tener un proposito o responsabilidad unica**: definir una clase, una interfaz, un enumerado, etc.
+Esto mejora la legibilidad de codigo, facilita la lectura, testing y favorece su mantenimiento.
+
+Utilizamos archivos separados y la utilizacion de import, export para lograr un poco mas de mantenibiilidad. Podemos usar tambien carpetas para separar nuestros archivos.
