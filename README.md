@@ -1155,3 +1155,60 @@ Proviene de los principios SOLID indica que , **idealmente un archivo deberia te
 Esto mejora la legibilidad de codigo, facilita la lectura, testing y favorece su mantenimiento.
 
 Utilizamos archivos separados y la utilizacion de import, export para lograr un poco mas de mantenibiilidad. Podemos usar tambien carpetas para separar nuestros archivos.
+
+# Resolviendo módulos
+
+Resolviendo Modulos: Typescript resuelve la ubicacion de modulos observando referencias relativas y no relativas.
+Posteriormente intenta localizar el modulo usando una estrategia de resolucion de modulos.
+
+```
+tsc --moduleResolution node
+tsc --moduleResolution classic
+```
+
+- node: Modulos CommonJs o UMD, mas opciones de configuración
+- classic: Modulos AMD, System, ES2015, poco configurable en tsconfig.json
+
+```
+"moduleResolution": "node|classic"
+"traceResolution":true //util para debug
+```
+
+![](./readme-static/modules.png)
+
+# Webpack y agrupación de Módulos
+
+Webpack empaquetador de modulos, bundler para los amigos y permite la integracion con diferentes plugins o herramientas adicionales de configuracion.
+
+```
+
+npm install typescript webpack webpack-cli --save-dev
+
+npm install ts-loader --save-dev
+
+```
+
+```json
+
+module.exports = {
+  mode: 'production',
+  entry: './src/main.ts',
+  devtool: 'inline-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.ts', '.js']
+  }, // extensiones que soportamos en el proyecto
+  output: {
+    filename: 'bundle.js' // archivo resultante.
+  }
+};
+
+```
